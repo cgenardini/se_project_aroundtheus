@@ -1,0 +1,141 @@
+.profile {
+  margin: 0 auto;
+  max-width: 880px;
+}
+
+.profile__header {
+  max-height: 127.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin: 36.25px auto 0;
+}
+
+.profile__image {
+  border-radius: 50%;
+  max-height: 127.5px;
+}
+
+.profile__title {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 415px;
+}
+
+.profile__name {
+  font-size: 42px;
+  font-weight: 500px;
+  line-height: 1.14;
+  font-weight: 500;
+  margin: 0;
+}
+
+.profile__job-title {
+  margin: 16px 0 0;
+  font-size: 18px;
+  line-height: 1.22;
+  font-weight: 400;
+}
+
+.profile__button {
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.profile__button:hover {
+  opacity: 0.6;
+}
+
+.profile_button_type_edit {
+  height: 24px;
+  width: 24px;
+  margin-left: 18px;
+  background-image: url(../images/edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  padding: 0;
+}
+
+.profile_button_type_add {
+  height: 50px;
+  width: 150px;
+  margin-left: auto;
+  border: 2px solid white;
+  background-image: url(../images/add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+  padding: 0;
+}
+
+.profile__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 17px;
+  margin-top: 47.25px;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile {
+    margin: 0 5%;
+  }
+  .profile__cards {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    max-width: 581px;
+    align-items: center;
+    margin: 47.25px auto 0;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .profile {
+    max-width: 282px;
+    margin: 0 auto;
+  }
+
+  .profile__header {
+    flex-direction: column;
+    margin: 38.25px auto 0;
+    justify-content: center;
+    max-height: fit-content;
+  }
+
+  .profile__title {
+    justify-content: center;
+    margin: 26.25px 0 30px;
+    max-width: 224px;
+  }
+
+  .profile__name {
+    font-size: 22px;
+    line-height: 1.21;
+  }
+
+  .profile__job-title {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.21;
+  }
+
+  .profile_button_type_edit {
+    height: 18px;
+    width: 18px;
+    margin-left: 10px;
+  }
+
+  .profile_button_type_add {
+    margin: auto;
+    width: 100%;
+  }
+
+  .profile__cards {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin: 36px auto 0;
+  }
+}
