@@ -50,7 +50,7 @@
   opacity: 0.6;
 }
 
-.profile_button_type_edit {
+.profile__button_type_edit {
   height: 24px;
   width: 24px;
   margin-left: 18px;
@@ -61,7 +61,7 @@
   padding: 0;
 }
 
-.profile_button_type_add {
+.profile__button_type_add {
   height: 50px;
   width: 150px;
   margin-left: auto;
@@ -124,13 +124,13 @@
     line-height: 1.21;
   }
 
-  .profile_button_type_edit {
+  .profile__button_type_edit {
     height: 18px;
     width: 18px;
     margin-left: 10px;
   }
 
-  .profile_button_type_add {
+  .profile__button_type_add {
     margin: auto;
     width: 100%;
   }
