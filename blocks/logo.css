@@ -2,9 +2,15 @@
   margin: 45px 0 41px 0;
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 900px) {
   .logo {
-    margin: 28px 0 32px 28px;
+    margin: 45px 0 41px 28px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .logo {
     max-width: 126px;
+    margin: 28px 0 32px 28px;
   }
 }

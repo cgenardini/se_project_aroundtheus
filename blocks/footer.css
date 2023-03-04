@@ -18,12 +18,14 @@
   }
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 880px) {
   .footer {
     max-width: 282px;
   }
 
   .footer__copywrite {
     padding: 48px 0 36px;
+    font-size: 14px;
+    line-height: 1.21;
   }
 }

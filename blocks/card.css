@@ -2,7 +2,6 @@
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
-  height: 361px;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
@@ -27,11 +26,14 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 219px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.21;
 }
 
 .card__button {
   background-image: url(../images/heart.svg);
-  background-color: #ffffff;
+  background-color: transparent;
   height: 18px;
   width: 21px;
   border: none;
