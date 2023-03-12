@@ -40,6 +40,37 @@
             class="profile__button profile__button_type_add"
           ></button>
         </section>
+        <section class="modal">
+          <form class="modal__container">
+            <h3 class="modal__header">Edit Profile</h3>
+            <fieldset class="modal__fieldset">
+              <input
+                type="text"
+                class="modal__input model__input_type_name"
+                id="name"
+                required
+                value="Jacques Cousteau"
+              />
+              <input
+                type="text"
+                class="modal__input"
+                id="bio"
+                required
+                value="Explorer"
+              />
+              <button
+                type="submit"
+                class="modal__button modal__button_type_save"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                class="modal__button modal__button_type_close"
+              ></button>
+            </fieldset>
+          </form>
+        </section>
         <section class="gallery">
           <ul class="gallery__cards">
             <li class="card">
