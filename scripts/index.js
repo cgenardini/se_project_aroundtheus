@@ -24,3 +24,17 @@ const initialCards = [
     link: "https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
 ];
+
+let button = document.querySelector(".profile__button");
+let buttonEdit = document.querySelector(".profile__button_type_edit");
+let modal = document.querySelector(".modal");
+let modalButtonClose = document.querySelector(".modal__button_type_close");
+
+buttonEdit.addEventListener("click", function (evt) {
+  modal.classList.add("modal__open");
+  console.log("hello");
+});
+
+modalButtonClose.addEventListener("click", function (evt) {
+  modal.classList.remove("modal__open");
+});
