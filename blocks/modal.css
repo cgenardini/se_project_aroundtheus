@@ -2,7 +2,7 @@
   display: none;
 }
 
-.modal__open {
+.modal_open {
   display: flex;
   justify-content: center;
   align-items: center;

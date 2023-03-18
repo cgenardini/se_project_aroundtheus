@@ -46,11 +46,11 @@ buttonEdit.addEventListener("click", function (evt) {
   evt.preventDefault();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  modal.classList.add("modal__open");
+  modal.classList.add("modal_open");
 });
 
 modalButtonClose.addEventListener("click", function (evt) {
-  modal.classList.remove("modal__open");
+  modal.classList.remove("modal_open");
 });
 
 // form submit
@@ -59,7 +59,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  modal.classList.remove("modal__open");
+  modal.classList.remove("modal_open");
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
