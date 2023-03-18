@@ -16,8 +16,9 @@
 }
 
 .modal__container {
-  width: 430px;
-  height: 330px;
+  max-width: 430px;
+  width: 100%;
+  min-height: 330px;
   background-color: white;
   border-radius: 10px;
   position: relative;
@@ -32,11 +33,11 @@
 
 .modal__fieldset {
   margin: 0 36px;
+  padding: 0 0 34px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 358px;
-  padding: 0;
   border: none;
   font-size: 14px;
   line-height: 1.21;
@@ -77,7 +78,7 @@
   position: absolute;
   top: -40px;
   right: -40px;
-  background-image: url(../images/Close\ Icon.png);
+  background-image: url(../images/Close-Icon.svg);
   background-repeat: no-repeat;
   background-position: center;
   height: 40px;

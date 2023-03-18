@@ -6,6 +6,7 @@
 - Figma
 - Images
 - Adaptable Webdesign
+- JavaScripts
 
 This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone.
 
@@ -17,9 +18,15 @@ This project is made so all the elements are displayed correctly on popular scre
 
 - All images downloaded from Figma.
 
+**JavaScript**
+
+- cards rendered through js
+- modal button activated/deactivated using buttons
+- form submit updated user information on profile and renders value in the form input
+
 **Updates**
 
-- Buttons need to be activated so user can edit personal information and add new content.
+- Add button need to be activated so user can add new content and change user profile picture.
 
 **Live**
 

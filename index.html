@@ -49,14 +49,12 @@
                 class="modal__input model__input_type_name"
                 id="name"
                 required
-                value="Jacques Cousteau"
               />
               <input
                 type="text"
-                class="modal__input"
-                id="bio"
+                class="modal__input model__input_type_job"
+                id="job"
                 required
-                value="Explorer"
               />
               <button
                 type="submit"
@@ -73,56 +71,15 @@
         </section>
         <section class="gallery">
           <ul class="gallery__cards">
-            <li class="card">
-              <img src="./images/rome.jpg" class="card__image" alt="rome" />
-              <div class="card__footer">
-                <h2 class="card__description">Rome</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/bali.jpg" class="card__image" alt="bali" />
-              <div class="card__footer">
-                <h2 class="card__description">Bali</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/croatia.jpg"
-                class="card__image"
-                alt="croatia"
-              />
-              <div class="card__footer">
-                <h2 class="card__description">Croatia</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/cambodia.jpg"
-                class="card__image"
-                alt="cambodia"
-              />
-              <div class="card__footer">
-                <h2 class="card__description">Cambodia</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/oaxaca.jpg" class="card__image" alt="oaxaca" />
-              <div class="card__footer">
-                <h2 class="card__description">Oaxaca</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/greece.jpg" class="card__image" alt="greece" />
-              <div class="card__footer">
-                <h2 class="card__description">Greece</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>
+            <template id="card-template">
+              <li class="card">
+                <img class="card__image" />
+                <div class="card__footer">
+                  <h2 class="card__description"></h2>
+                  <button type="button" class="card__button"></button>
+                </div>
+              </li>
+            </template>
           </ul>
         </section>
       </main>

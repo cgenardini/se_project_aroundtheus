@@ -1,3 +1,5 @@
+// variables
+
 const initialCards = [
   {
     name: "Rome",
@@ -25,16 +27,62 @@ const initialCards = [
   },
 ];
 
-let button = document.querySelector(".profile__button");
-let buttonEdit = document.querySelector(".profile__button_type_edit");
-let modal = document.querySelector(".modal");
-let modalButtonClose = document.querySelector(".modal__button_type_close");
+const button = document.querySelector(".profile__button");
+const buttonEdit = document.querySelector(".profile__button_type_edit");
+const modal = document.querySelector(".modal");
+const modalButtonClose = document.querySelector(".modal__button_type_close");
+
+const profileFormElement = document.querySelector(".modal__container");
+
+const nameInput = profileFormElement.querySelector(".model__input_type_name");
+const jobInput = profileFormElement.querySelector(".model__input_type_job");
+
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__job-title");
+
+// modal open/close
 
 buttonEdit.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
   modal.classList.add("modal__open");
-  console.log("hello");
 });
 
 modalButtonClose.addEventListener("click", function (evt) {
   modal.classList.remove("modal__open");
 });
+
+// form submit
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  modal.classList.remove("modal__open");
+}
+
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+
+// render cards
+
+const cardsContainer = document.querySelector(".gallery__cards");
+const data = initialCards;
+
+function createCard(data) {
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardElementTitle = cardTemplate.querySelector(".card__description");
+  const cardElementImage = cardTemplate.querySelector(".card__image");
+  cardElementTitle.textContent = data.name;
+  cardElementImage.src = data.link;
+  cardElementImage.alt = data.name;
+  return cardElement;
+}
+
+for (let i = 0; i < data.length; i++) {
+  createCard(data[i]);
+  const card = createCard(data);
+
+  cardsContainer.prepend(card);
+}
