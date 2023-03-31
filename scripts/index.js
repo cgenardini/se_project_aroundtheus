@@ -27,18 +27,76 @@ const initialCards = [
   },
 ];
 
+const cardsContainer = document.querySelector(".gallery__cards");
+const cardTemplate = document.querySelector("#card-template").content;
+
 const button = document.querySelector(".profile__button");
 const buttonEdit = document.querySelector(".profile__button_type_edit");
+const buttonAdd = document.querySelector(".profile__button_type_add");
 const modal = document.querySelector(".modal");
-const modalButtonClose = document.querySelector(".modal__button_type_close");
+const modalEdit = document.querySelector("#modal-edit");
+const modalAdd = document.querySelector("#modal-add");
+const editButtonClose = document.querySelector("#close-edit");
+const addButtonClose = document.querySelector("#close-add");
 
 const profileFormElement = document.querySelector(".modal__container");
+const profileAddFormElement = document.querySelector("#container-add");
 
 const nameInput = profileFormElement.querySelector(".modal__input_type_name");
 const jobInput = profileFormElement.querySelector(".modal__input_type_job");
 
+const titleInput = profileAddFormElement.querySelector(
+  ".modal__input_type_title"
+);
+const linkInput = profileAddFormElement.querySelector(
+  ".modal__input_type_link"
+);
+
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job-title");
+
+// Functions
+
+function renderCard(data) {
+  cardsContainer.prepend(data);
+}
+
+function createCard(data) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardElementTitle = cardElement.querySelector(".card__description");
+  const cardElementImage = cardElement.querySelector(".card__image");
+  cardElementTitle.textContent = data.name;
+  cardElementImage.src = data.link;
+  cardElementImage.alt = data.name;
+  renderCard(cardElement);
+  return cardElement;
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closeModal(modalEdit);
+}
+
+function handleImageAddSubmit(evt) {
+  evt.preventDefault();
+  const title = evt.target.title.value;
+  const link = evt.target.link.value;
+  createCard({
+    name: title,
+    link: link,
+  });
+  closeModal(modalAdd);
+}
+
+function openModal(evt) {
+  evt.classList.add("modal_open");
+}
+
+function closeModal(evt) {
+  evt.classList.remove("modal_open");
+}
 
 // modal open/close
 
@@ -46,43 +104,32 @@ buttonEdit.addEventListener("click", function (evt) {
   evt.preventDefault();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  modal.classList.add("modal_open");
+  openModal(modalEdit);
 });
 
-modalButtonClose.addEventListener("click", function (evt) {
-  modal.classList.remove("modal_open");
+buttonAdd.addEventListener("click", function (evt) {
+  evt.preventDefault(evt);
+  openModal(modalAdd);
+});
+
+editButtonClose.addEventListener("click", () => {
+  closeModal(modalEdit);
+});
+
+addButtonClose.addEventListener("click", () => {
+  closeModal(modalAdd);
 });
 
 // form submit
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  modal.classList.remove("modal_open");
-}
-
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+
+profileAddFormElement.addEventListener("submit", handleImageAddSubmit);
 
 // render cards
 
-const cardsContainer = document.querySelector(".gallery__cards");
-const data = initialCards;
-
-function createCard(data) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardElementTitle = cardTemplate.querySelector(".card__description");
-  const cardElementImage = cardTemplate.querySelector(".card__image");
-  cardElementTitle.textContent = data.name;
-  cardElementImage.src = data.link;
-  cardElementImage.alt = data.name;
-  return cardElement;
-}
-
-for (let i = 0; i < data.length; i++) {
-  createCard(data[i]);
-  const card = createCard(data);
-
-  cardsContainer.prepend(card);
-}
+initialCards.forEach((data) => {
+  createCard(data);
+  // const card = createCard(data);
+  // cardsContainer.append(card);
+});

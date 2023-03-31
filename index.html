@@ -40,7 +40,8 @@
             class="profile__button profile__button_type_add"
           ></button>
         </section>
-        <section class="modal">
+
+        <section class="modal" id="modal-edit">
           <form class="modal__container">
             <h3 class="modal__header">Edit Profile</h3>
             <fieldset class="modal__fieldset">
@@ -65,28 +66,64 @@
               <button
                 type="button"
                 class="modal__button modal__button_type_close"
+                id="close-edit"
               ></button>
             </fieldset>
           </form>
         </section>
+
+        <section class="modal" id="modal-add">
+          <form class="modal__container" id="container-add">
+            <h3 class="modal__header">New place</h3>
+            <fieldset class="modal__fieldset">
+              <input
+                type="text"
+                class="modal__input modal__input_type_name"
+                id="title"
+                name="title"
+                placeholder="Title"
+                required
+              />
+              <input
+                type="text"
+                class="modal__input modal__input_type_job"
+                id="link"
+                name="link"
+                placeholder="Image link"
+                required
+              />
+              <button
+                type="submit"
+                class="modal__button modal__button_type_save"
+              >
+                Create
+              </button>
+              <button
+                type="button"
+                class="modal__button modal__button_type_close"
+                id="close-add"
+              ></button>
+            </fieldset>
+          </form>
+        </section>
+
         <section class="gallery">
-          <ul class="gallery__cards">
-            <template id="card-template">
-              <li class="card">
-                <img class="card__image" />
-                <div class="card__footer">
-                  <h2 class="card__description"></h2>
-                  <button type="button" class="card__button"></button>
-                </div>
-              </li>
-            </template>
-          </ul>
+          <ul class="gallery__cards"></ul>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copywrite">© C Genardini</p>
       </footer>
     </div>
+    <template id="card-template">
+      <li class="card">
+        <img class="card__image" />
+        <div class="card__footer">
+          <h2 class="card__description"></h2>
+          <button type="button" class="card__button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
