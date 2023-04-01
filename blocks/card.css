@@ -39,6 +39,7 @@
   border: none;
   cursor: pointer;
   background-image: url(../images/Trash.svg);
+  background-repeat: no-repeat;
   width: 18px;
   height: 19.3px;
   position: absolute;
