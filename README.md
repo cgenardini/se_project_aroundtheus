@@ -2,11 +2,10 @@
 
 ### Overview
 
-- Intro
 - Figma
 - Images
 - Adaptable Webdesign
-- JavaScripts
+- JavaScript
 
 This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone.
 
@@ -23,10 +22,14 @@ This project is made so all the elements are displayed correctly on popular scre
 - cards rendered through js
 - modal button activated/deactivated using buttons
 - form submit updated user information on profile and renders value in the form input
+- modal added for card add form. Form information is submitted to render new card on feed.
+- Delete and like buttons added to each individual card at the time of creation
+- All modal have a smooth transition in and out
+- Image modal is opened with user clicks on card images. Image title is displayed below image modal
 
 **Updates**
 
-- Add button need to be activated so user can add new content and change user profile picture.
+- User need a way to change profile picture.
 
 **Live**
 

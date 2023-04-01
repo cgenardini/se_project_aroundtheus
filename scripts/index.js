@@ -28,13 +28,12 @@ const initialCards = [
 ];
 
 const cardsContainer = document.querySelector(".gallery__cards");
-const cardTemplate = document.querySelector("#card-template").content;
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 
-const button = document.querySelector(".profile__button");
 const buttonEdit = document.querySelector(".profile__button_type_edit");
 const buttonAdd = document.querySelector(".profile__button_type_add");
 
-const modal = document.querySelector(".modal");
 const modalEdit = document.querySelector("#modal-edit");
 const modalAdd = document.querySelector("#modal-add");
 const editButtonClose = document.querySelector("#close-edit");
@@ -59,7 +58,7 @@ function renderCard(data, container) {
 }
 
 function createCard(data) {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
   const cardElementTitle = cardElement.querySelector(".card__description");
   const cardElementImage = cardElement.querySelector(".card__image");
   cardElementTitle.textContent = data.name;
@@ -162,11 +161,4 @@ initialCards.forEach((data) => {
   createCard(data);
   const card = createCard(data);
   renderCard(card, cardsContainer);
-  // cardsContainer.append(card);
 });
-
-// delete cards
-
-// buttonDelete.addEventListener("click", function () {
-//   console.log("Hi");
-// });
