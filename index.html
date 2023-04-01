@@ -75,7 +75,7 @@
         <section class="modal" id="modal-add">
           <form class="modal__container" id="container-add">
             <h3 class="modal__header">New place</h3>
-            <fieldset class="modal__fieldset">
+            <fieldset class="modal__fieldset" id="add-form">
               <input
                 type="text"
                 class="modal__input modal__input_type_name"
@@ -107,6 +107,19 @@
           </form>
         </section>
 
+        <section class="modal" id="modal-image">
+          <div class="modal__image-container">
+            <img src="" alt="" class="modal__image" id="container-image" />
+
+            <button
+              type="button"
+              class="modal__button modal__button_type_close"
+              id="image-close"
+            ></button>
+            <h3 class="modal__image-title"></h3>
+          </div>
+        </section>
+
         <section class="gallery">
           <ul class="gallery__cards"></ul>
         </section>
@@ -118,9 +131,14 @@
     <template id="card-template">
       <li class="card">
         <img class="card__image" />
+        <button
+          type="button"
+          class="card__button-delete"
+          id="delete-button"
+        ></button>
         <div class="card__footer">
           <h2 class="card__description"></h2>
-          <button type="button" class="card__button"></button>
+          <button type="button" class="card__button-like"></button>
         </div>
       </li>
     </template>

@@ -2,12 +2,17 @@
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .card__image {
   height: 282px;
   width: 282px;
   display: block;
+}
+
+.card__image:hover {
+  cursor: pointer;
 }
 
 .card__footer {
@@ -28,17 +33,38 @@
   line-height: 1.21;
 }
 
-.card__button {
-  background-image: url(../images/heart.svg);
+.card__button-delete {
   background-color: transparent;
-  height: 18px;
-  width: 21px;
+
   border: none;
   cursor: pointer;
+  background-image: url(../images/Trash.svg);
+  width: 18px;
+  height: 19.3px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.card__button-delete:hover {
+  opacity: 0.5;
+}
+
+.card__button-like {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-image: url(../images/heart.svg);
+  height: 18px;
+  width: 21px;
   margin-left: auto;
   padding: 0;
 }
 
-.card__button:hover {
+.card__button-like:hover {
   opacity: 0.5;
+}
+
+.card_button-like_active {
+  background-image: url(../images/heart-active.svg);
 }
