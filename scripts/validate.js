@@ -1,6 +1,3 @@
-// enabling validation by calling enableValidation()
-// pass all the settings on call
-
 const options = {
   formSelector: ".modal__container",
   inputSelector: ".modal__input",
