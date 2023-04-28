@@ -26,10 +26,13 @@ This project is made so all the elements are displayed correctly on popular scre
 - Delete and like buttons added to each individual card at the time of creation
 - All modal have a smooth transition in and out
 - Image modal is opened with user clicks on card images. Image title is displayed below image modal
+- custom form validation message display withing browser default message
+- Buttons active of when all for inputs are valid.
 
 **Updates**
 
-- User need a way to change profile picture.
+- User need a way to change profile picture
+- New data saved to server
 
 **Live**
 

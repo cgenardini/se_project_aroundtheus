@@ -45,27 +45,32 @@
           <form class="modal__container">
             <h3 class="modal__header">Edit Profile</h3>
             <fieldset class="modal__fieldset">
-              <input
-                type="text"
-                class="modal__input modal__input_type_name"
-                id="name"
-                required
-              />
-              <input
-                type="text"
-                class="modal__input modal__input_type_job"
-                id="job"
-                required
-              />
-              <button
-                type="submit"
-                class="modal__button modal__button_type_save"
-              >
-                Save
-              </button>
+              <label class="modal__input-wrap">
+                <input
+                  type="text"
+                  class="modal__input modal__input_type_name"
+                  id="name"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="modal__error" id="name-error"></span>
+              </label>
+              <label class="modal__input-wrap">
+                <input
+                  type="text"
+                  class="modal__input modal__input_type_job"
+                  id="job"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                />
+                <span class="modal__error" id="job-error"></span>
+              </label>
+              <button type="submit" class="modal__button">Save</button>
               <button
                 type="button"
-                class="modal__button modal__button_type_close"
+                class="modal__close"
                 id="close-edit"
               ></button>
             </fieldset>
@@ -76,31 +81,40 @@
           <form class="modal__container" id="container-add">
             <h3 class="modal__header">New place</h3>
             <fieldset class="modal__fieldset" id="add-form">
-              <input
-                type="text"
-                class="modal__input modal__input_type_name"
-                id="title"
-                name="title"
-                placeholder="Title"
-                required
-              />
-              <input
-                type="text"
-                class="modal__input modal__input_type_job"
-                id="link"
-                name="link"
-                placeholder="Image link"
-                required
-              />
+              <label class="modal__input-wrap">
+                <input
+                  type="text"
+                  class="modal__input modal__input_type_name"
+                  id="title"
+                  name="title"
+                  placeholder="Title"
+                  minlength="1"
+                  maxlength="30"
+                  required
+                />
+                <span class="modal__error" id="title-error"></span>
+              </label>
+              <label class="modal__input-wrap">
+                <input
+                  type="url"
+                  class="modal__input modal__input_type_job"
+                  id="link"
+                  name="link"
+                  placeholder="Image link"
+                  required
+                />
+                <span class="modal__error" id="link-error"></span>
+              </label>
               <button
                 type="submit"
-                class="modal__button modal__button_type_save"
+                class="modal__button modal__button_disabled"
+                disabled
               >
                 Create
               </button>
               <button
                 type="button"
-                class="modal__button modal__button_type_close"
+                class="modal__close"
                 id="close-add"
               ></button>
             </fieldset>
@@ -143,5 +157,6 @@
       </li>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

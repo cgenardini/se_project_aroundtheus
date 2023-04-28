@@ -34,10 +34,11 @@ const cardTemplate =
 const buttonEdit = document.querySelector(".profile__button_type_edit");
 const buttonAdd = document.querySelector(".profile__button_type_add");
 
+const modal = document.querySelectorAll(".modal");
 const modalEdit = document.querySelector("#modal-edit");
 const modalAdd = document.querySelector("#modal-add");
 
-const closeButton = document.querySelectorAll(".modal__button_type_close");
+const closeButton = document.querySelectorAll(".modal__close");
 
 const profileFormElement = document.querySelector(".modal__container");
 const profileAddFormElement = document.querySelector("#container-add");
@@ -108,12 +109,27 @@ function handleImageAddSubmit(evt) {
   evt.target.reset();
 }
 
+const clickOutsideModalClose = (popup) => (evt) => {
+  if (evt.target == popup) {
+    closeModal(popup);
+  }
+};
+const escapeCloseModal = (popup) => (evt) => {
+  if (evt.key === "Escape") {
+    closeModal(popup);
+  }
+};
 function openModal(popup) {
   popup.classList.add("modal_open");
+
+  document.addEventListener("mousedown", clickOutsideModalClose(popup));
+  document.addEventListener("keydown", escapeCloseModal(popup));
 }
 
 function closeModal(popup) {
   popup.classList.remove("modal_open");
+  document.removeEventListener("mousedown", clickOutsideModalClose(popup));
+  document.removeEventListener("keydown", escapeCloseModal(popup));
 }
 
 // modal open/close
