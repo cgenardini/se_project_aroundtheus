@@ -34,11 +34,11 @@ const cardTemplate =
 const buttonEdit = document.querySelector(".profile__button_type_edit");
 const buttonAdd = document.querySelector(".profile__button_type_add");
 
-const modal = document.querySelectorAll(".modal");
+const modals = document.querySelectorAll(".modal");
 const modalEdit = document.querySelector("#modal-edit");
 const modalAdd = document.querySelector("#modal-add");
 
-const closeButton = document.querySelectorAll(".modal__close");
+const closeButtons = document.querySelectorAll(".modal__close");
 
 const profileFormElement = document.querySelector(".modal__container");
 const profileAddFormElement = document.querySelector("#container-add");
@@ -104,32 +104,38 @@ function handleImageAddSubmit(evt) {
     name: title,
     link: link,
   });
+
   renderCard(card, cardsContainer);
   closeModal(modalAdd);
   evt.target.reset();
+  modalAdd.disabled = true;
 }
 
-const clickOutsideModalClose = (popup) => (evt) => {
-  if (evt.target == popup) {
-    closeModal(popup);
+const closeByOutsideClick = (evt) => {
+  if (evt.target.classList.contains("modal_open")) {
+    const openedPopup = document.querySelector(".modal_open");
+    closeModal(openedPopup);
   }
 };
-const escapeCloseModal = (popup) => (evt) => {
+
+const closeByEscape = (evt) => {
   if (evt.key === "Escape") {
-    closeModal(popup);
+    const openedPopup = document.querySelector(".modal_open");
+    closeModal(openedPopup);
   }
 };
+
 function openModal(popup) {
   popup.classList.add("modal_open");
 
-  document.addEventListener("mousedown", clickOutsideModalClose(popup));
-  document.addEventListener("keydown", escapeCloseModal(popup));
+  document.addEventListener("mousedown", closeByOutsideClick);
+  document.addEventListener("keydown", closeByEscape);
 }
 
 function closeModal(popup) {
   popup.classList.remove("modal_open");
-  document.removeEventListener("mousedown", clickOutsideModalClose(popup));
-  document.removeEventListener("keydown", escapeCloseModal(popup));
+  document.removeEventListener("mousedown", closeByOutsideClick);
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 // modal open/close
@@ -159,7 +165,18 @@ initialCards.forEach((data) => {
   renderCard(card, cardsContainer);
 });
 
-closeButton.forEach((button) => {
+closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
 });
+
+// modals.forEach((modal) => {
+//   modal.addEventListener("mousedown", (evt) => {
+//     if (evt.target.classList.contains("modal_open")) {
+//       closeModal(modal);
+//     }
+//     if (evt.target.classList.contains("modal__close")) {
+//       closeModal(modal);
+//     }
+//   });
+// });
