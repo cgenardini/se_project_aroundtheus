@@ -48,6 +48,7 @@ const jobInput = profileFormElement.querySelector(".modal__input_type_job");
 
 const titleInput = profileAddFormElement.querySelector("#title");
 const linkInput = profileAddFormElement.querySelector("#link");
+const addInputs = profileAddFormElement.querySelectorAll(".modal__input");
 
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job-title");
@@ -105,10 +106,11 @@ function handleImageAddSubmit(evt) {
     link: link,
   });
 
+  const addButton = profileAddFormElement.querySelector(".modal__button");
   renderCard(card, cardsContainer);
   closeModal(modalAdd);
   evt.target.reset();
-  modalAdd.disabled = true;
+  toggleButton(addInputs, addButton, options);
 }
 
 const closeByOutsideClick = (evt) => {
