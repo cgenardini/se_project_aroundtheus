@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import { closeModal, openModal } from "../utils/utils.js";
 
 // variables
 
@@ -31,13 +32,10 @@ const initialCards = [
 ];
 
 const cardsContainer = document.querySelector(".gallery__cards");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 
 const buttonEdit = document.querySelector(".profile__button_type_edit");
 const buttonAdd = document.querySelector(".profile__button_type_add");
 
-const modals = document.querySelectorAll(".modal");
 const modalEdit = document.querySelector("#modal-edit");
 const modalAdd = document.querySelector("#modal-add");
 
@@ -55,18 +53,7 @@ const profileJob = document.querySelector(".profile__job-title");
 
 const cardSelector = "#card-template";
 
-// card
-
-function renderCard(data, container) {
-  const newCard = new Card(data, cardSelector);
-  container.prepend(newCard.getView());
-}
-
-initialCards.forEach((data) => {
-  renderCard(data, cardsContainer);
-});
-
-// Functions
+//
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -91,35 +78,6 @@ function handleImageAddSubmit(evt) {
   addFormValidator.toggleButton();
 }
 
-const closeByOutsideClick = (evt) => {
-  if (evt.target.classList.contains("modal_open")) {
-    const openedPopup = document.querySelector(".modal_open");
-    closeModal(openedPopup);
-  }
-};
-
-const closeByEscape = (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_open");
-    closeModal(openedPopup);
-  }
-};
-
-function openModal(popup) {
-  popup.classList.add("modal_open");
-
-  document.addEventListener("mousedown", closeByOutsideClick);
-  document.addEventListener("keydown", closeByEscape);
-}
-
-function closeModal(popup) {
-  popup.classList.remove("modal_open");
-  document.removeEventListener("mousedown", closeByOutsideClick);
-  document.removeEventListener("keydown", closeByEscape);
-}
-
-// Event Listeners
-
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
@@ -140,6 +98,17 @@ buttonAdd.addEventListener("click", function (evt) {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 formAddElement.addEventListener("submit", handleImageAddSubmit);
+
+// card
+
+function renderCard(data, container) {
+  const newCard = new Card(data, cardSelector);
+  container.prepend(newCard.getView());
+}
+
+initialCards.forEach((data) => {
+  renderCard(data, cardsContainer);
+});
 
 // form validator
 
