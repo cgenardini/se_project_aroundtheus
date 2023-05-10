@@ -28,10 +28,13 @@ This project is made so all the elements are displayed correctly on popular scre
 - Image modal is opened with user clicks on card images. Image title is displayed below image modal
 - custom form validation message display withing browser default message
 - Buttons active of when all for inputs are valid.
+- organized into modules to organize code
+- created two classes for Card and FormValidator
+- Utils placed to separate modules to use in separate files
 
 **Updates**
 
-- User need a way to change profile picture
+- User needs a way to change profile picture
 - New data saved to server
 
 **Live**
