@@ -74,8 +74,7 @@ function handleImageAddSubmit(evt) {
   renderCard(card, cardsContainer);
   closeModal(modalAdd);
   evt.target.reset();
-  editFormValidator.toggleButton();
-  addFormValidator.toggleButton();
+  addFormValidator.resetValidation();
 }
 
 closeButtons.forEach((button) => {
@@ -101,8 +100,13 @@ formAddElement.addEventListener("submit", handleImageAddSubmit);
 
 // card
 
+function createCard(item) {
+  const cardElement = new Card(item, cardSelector);
+  return cardElement;
+}
+
 function renderCard(data, container) {
-  const newCard = new Card(data, cardSelector);
+  const newCard = createCard(data);
   container.prepend(newCard.getView());
 }
 

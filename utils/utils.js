@@ -1,7 +1,6 @@
 const closeByOutsideClick = (evt) => {
   if (evt.target.classList.contains("modal_open")) {
-    const openedPopup = document.querySelector(".modal_open");
-    closeModal(openedPopup);
+    closeModal(evt.target);
   }
 };
 

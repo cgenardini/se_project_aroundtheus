@@ -42,7 +42,7 @@ class FormValidator {
     this._buttonElement.disabled = true;
   }
 
-  toggleButton() {
+  _toggleButton() {
     let invalidInput = false;
 
     this._inputElements.forEach((inputElement) => {
@@ -58,6 +58,14 @@ class FormValidator {
     this._enableButton();
   }
 
+  resetValidation() {
+    this._toggleButton();
+
+    this._inputElements.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   _setEventListeners() {
     this._inputElements = [
       ...this._formElement.querySelectorAll(this._inputSelector),
@@ -69,7 +77,7 @@ class FormValidator {
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", (evt) => {
         this._checkInputValidity(inputElement);
-        this.toggleButton();
+        this._toggleButton();
       });
     });
   }
