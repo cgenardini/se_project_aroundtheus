@@ -11,19 +11,22 @@
     />
     <meta name="keywords" content="html, css, travel, social" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Around the US</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img class="logo" src="./images/around.svg" alt="logo" />
+        <img
+          class="logo"
+          src="<%=require('./images/around.svg')%>"
+          alt="logo"
+        />
       </header>
       <main class="content">
         <section class="profile">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="image"
           />
           <div class="profile__title">
@@ -156,7 +159,5 @@
         </div>
       </li>
     </template>
-
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>

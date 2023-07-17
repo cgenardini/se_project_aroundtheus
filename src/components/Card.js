@@ -1,15 +1,8 @@
-import { openModal } from "../utils/utils.js";
-
-const imageModal = document.querySelector("#modal-image");
-const modalImage = document.querySelector(".modal__image");
-const modalImageTitle = document.querySelector(".modal__image-title");
-
-// Card
-
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, handleImagePreview }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._handleImagePreview = handleImagePreview;
 
     this._cardSelector = cardSelector;
   }
@@ -22,19 +15,12 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleImagePrview() {
-    openModal(imageModal);
-    modalImage.src = this._link;
-    modalImage.alt = this._name;
-    modalImageTitle.textContent = this._name;
-  }
-
   _setEventListeners() {
     this._elementDeleteButton.addEventListener("click", () =>
       this._handleDeleteButton()
     );
     this._elementImage.addEventListener("click", () =>
-      this._handleImagePrview()
+      this._handleImagePreview({ name: this._name, link: this._link })
     );
     this._elementLikeButton.addEventListener("click", () =>
       this._handleLikeButton()
