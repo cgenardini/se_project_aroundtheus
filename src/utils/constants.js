@@ -34,6 +34,7 @@ export const cardContainerSelector = ".gallery__cards";
 
 export const buttonEdit = document.querySelector(".profile__button_type_edit");
 export const buttonAdd = document.querySelector(".profile__button_type_add");
+export const addSubmitButton = document.querySelector("#add_submit-button");
 
 export const modalEdit = document.querySelector("#modal-edit");
 export const modalAdd = document.querySelector("#modal-add");

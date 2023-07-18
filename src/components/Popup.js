@@ -15,36 +15,34 @@ export default class Popup {
     this.removeEventListeners();
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
-  _handleClickOutside(evt) {
+  _handleClickOutside = (evt) => {
     if (evt.target.classList.contains("modal_open")) {
       this.close();
     }
-  }
+  };
 
-  _handleCloseButtons() {
+  _handleCloseButtons = () => {
     closeButtons.forEach((button) => {
       button.addEventListener("click", () => this.close());
     });
-  }
+  };
 
   setEventListeners() {
-    document.addEventListener("mousedown", (evt) =>
-      this._handleClickOutside(evt)
-    );
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
+    document.addEventListener("mousedown", this._handleClickOutside);
+    document.addEventListener("keydown", this._handleEscClose);
 
-    document.addEventListener("click", () => this._handleCloseButtons());
+    document.addEventListener("click", this._handleCloseButtons);
   }
 
   removeEventListeners() {
-    document.removeEventListener("mousedown", () => this._handleClickOutside());
-    document.removeEventListener("keydown", () => this._handleEscClose());
-    document.removeEventListener("click", () => this._handleCloseButtons());
+    document.removeEventListener("mousedown", this._handleClickOutside);
+    document.removeEventListener("keydown", this._handleEscClose);
+    document.removeEventListener("click", this._handleCloseButtons);
   }
 }
