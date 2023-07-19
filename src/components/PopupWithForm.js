@@ -18,7 +18,7 @@ export default class PopupWithForm extends Popup {
 
   open() {
     super.open();
-    this.setEventListeners();
+    // this.setEventListeners();
   }
 
   setEventListeners() {
@@ -39,6 +39,6 @@ export default class PopupWithForm extends Popup {
   close() {
     this._popupForm.reset();
     super.close();
-    this.removeEventListeners();
+    // this.removeEventListeners();
   }
 }

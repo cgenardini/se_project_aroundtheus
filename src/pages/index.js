@@ -35,7 +35,8 @@ buttonEdit.addEventListener("click", () => {
 });
 
 buttonAdd.addEventListener("click", function (evt) {
-  addSubmitButton.classList.add(options.inactiveButtonClass);
+  addFormValidator.disableButton();
+
   addCardPopup.open();
 });
 
@@ -77,16 +78,25 @@ const cardSection = new Section(
 
 // //popup with form - add card
 
+const renderCard = (title, link) => {
+  const cardElement = new Card(
+    {
+      data: { title, link },
+      handleImagePreview: (imageData) => {
+        previewImage.open(imageData);
+      },
+    },
+    cardSelector
+  );
+  cardSection.addItem(cardElement.getView());
+};
+
 const addCardPopup = new PopupWithForm(formAddSelector, (data) => {
   const name = data.title;
   const link = data.link;
 
-  const card = {
-    name: name,
-    link: link,
-  };
+  renderCard(name, link);
 
-  cardSection.rendererItems([card]);
   addCardPopup.close();
 });
 
