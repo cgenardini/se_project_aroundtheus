@@ -61,16 +61,7 @@ addFormValidator.enableValidation();
 const cardSection = new Section(
   {
     renderer: (data) => {
-      const cardElement = new Card(
-        {
-          data,
-          handleImagePreview: (imageData) => {
-            previewImage.open(imageData);
-          },
-        },
-        cardSelector
-      );
-      cardSection.addItem(cardElement.getView());
+      renderCard(data);
     },
   },
   cardContainerSelector
@@ -78,10 +69,10 @@ const cardSection = new Section(
 
 // //popup with form - add card
 
-const renderCard = (title, link) => {
+const renderCard = (data) => {
   const cardElement = new Card(
     {
-      data: { title, link },
+      data,
       handleImagePreview: (imageData) => {
         previewImage.open(imageData);
       },
@@ -92,10 +83,14 @@ const renderCard = (title, link) => {
 };
 
 const addCardPopup = new PopupWithForm(formAddSelector, (data) => {
-  const name = data.title;
+  const title = data.title;
   const link = data.link;
+  const cardData = {
+    title,
+    link,
+  };
 
-  renderCard(name, link);
+  renderCard(cardData);
 
   addCardPopup.close();
 });
