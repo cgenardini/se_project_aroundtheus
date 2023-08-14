@@ -24,11 +24,7 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="image"
-          />
+          <img class="profile__image" alt="image" />
           <div class="profile__title">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button
@@ -47,7 +43,7 @@
         <section class="modal" id="modal-edit">
           <form class="modal__container" id="container-edit">
             <h3 class="modal__header">Edit Profile</h3>
-            <fieldset class="modal__fieldset">
+            <fieldset class="modal__fieldset modal__fieldset_type_edit">
               <label class="modal__input-wrap">
                 <input
                   type="text"
@@ -65,7 +61,7 @@
                   type="text"
                   class="modal__input modal__input_type_job"
                   id="job"
-                  name="job"
+                  name="about"
                   minlength="2"
                   maxlength="200"
                   required
@@ -82,16 +78,39 @@
           </form>
         </section>
 
+        <section class="modal" id="modal-delete">
+          <div class="modal__delete-container">
+            <h3 class="modal__header-delete">Are you sure?</h3>
+            <fieldset class="modal__fieldset">
+              <button
+                type="button"
+                class="modal__button modal__button-delete"
+                id="delete-button"
+              >
+                Yes
+              </button>
+            </fieldset>
+            <button
+              type="=button"
+              class="modal__close"
+              id="close-delete"
+            ></button>
+          </div>
+        </section>
+
         <section class="modal" id="modal-add">
           <form class="modal__container" id="container-add">
             <h3 class="modal__header">New place</h3>
-            <fieldset class="modal__fieldset" id="add-form">
+            <fieldset
+              class="modal__fieldset modal__fieldset_type_edit"
+              id="add-form"
+            >
               <label class="modal__input-wrap">
                 <input
                   type="text"
                   class="modal__input modal__input_type_name"
                   id="title"
-                  name="title"
+                  name="name"
                   placeholder="Title"
                   minlength="1"
                   maxlength="30"
@@ -149,7 +168,7 @@
       </footer>
     </div>
     <template id="card-template">
-      <li class="card">
+      <li class="card" id="">
         <img class="card__image" />
         <button
           type="button"

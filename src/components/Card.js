@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ data, handleImagePreview }, cardSelector) {
-    this._name = data.title;
+  constructor({ data, handleImagePreview, handleDeleteIcon }, cardSelector) {
+    this._name = data.name;
     this._link = data.link;
+    this._id = data._id;
     this._handleImagePreview = handleImagePreview;
-
+    this._handleDeleteIcon = handleDeleteIcon;
     this._cardSelector = cardSelector;
   }
 
@@ -11,13 +12,13 @@ export default class Card {
     this._elementLikeButton.classList.toggle("card_button-like_active");
   }
 
-  _handleDeleteButton() {
+  handleDeleteButton() {
     this._element.remove();
   }
 
   _setEventListeners() {
     this._elementDeleteButton.addEventListener("click", () =>
-      this._handleDeleteButton()
+      this._handleDeleteIcon(this._element)
     );
     this._elementImage.addEventListener("click", () =>
       this._handleImagePreview({ name: this._name, link: this._link })
@@ -43,6 +44,7 @@ export default class Card {
     this._elementTitle.textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
+    this._element.id = this._id;
 
     this._setEventListeners();
 

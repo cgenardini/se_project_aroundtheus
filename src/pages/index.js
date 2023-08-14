@@ -6,6 +6,8 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+import PopupDelete from "../components/PopupDelete.js";
 
 import {
   initialCards,
@@ -23,6 +25,9 @@ import {
   profileNameSelector,
   profileJobSelector,
   addSubmitButton,
+  profileAvatarSelector,
+  deletePopupSelector,
+  deleteButtonSelector,
 } from "../utils/constants.js";
 
 // profile edit and add buttons
@@ -67,7 +72,44 @@ const cardSection = new Section(
   cardContainerSelector
 );
 
-// //popup with form - add card
+// testing render card function
+
+const renCard = (data) => {
+  const cardElement = new Card(
+    {
+      data,
+      handleImagePreview: (imageData) => {
+        previewImage.open(imageData);
+      },
+      handleDeleteIcon: (cardElement) => {
+        const deleteCardPopup = new PopupDelete(
+          deletePopupSelector,
+          deleteButtonSelector,
+
+          () => {
+            // console.log(cardElement.id);
+
+            api
+              .deleteCard(cardElement)
+              .then(() => {
+                if (cardElement) {
+                  cardElement.remove();
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        );
+        deleteCardPopup.open();
+      },
+    },
+    cardSelector
+  );
+
+  cardSection.addItem(cardElement.getView());
+};
+// render card function
 
 const renderCard = (data) => {
   const cardElement = new Card(
@@ -76,34 +118,84 @@ const renderCard = (data) => {
       handleImagePreview: (imageData) => {
         previewImage.open(imageData);
       },
+      handleDeleteIcon: (cardElement) => {
+        const deleteCardPopup = new PopupDelete(
+          deletePopupSelector,
+          deleteButtonSelector,
+
+          () => {
+            // console.log(cardElement.id);
+
+            api
+              .deleteCard(cardElement)
+              .then(() => {
+                if (cardElement) {
+                  cardElement.remove();
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        );
+        deleteCardPopup.open();
+      },
     },
     cardSelector
   );
   cardSection.addItem(cardElement.getView());
 };
 
+// //popup with form - add card
+
 const addCardPopup = new PopupWithForm(formAddSelector, (data) => {
-  const title = data.title;
+  const name = data.name;
   const link = data.link;
+  const id = data._id;
   const cardData = {
-    title,
+    name,
     link,
+    id,
   };
 
-  renderCard(cardData);
-
-  addCardPopup.close();
+  newCard(cardData);
 });
 
-// // popup with form - edit profile
+function newCard(cardData) {
+  api
+    .addNewCard(cardData)
+    .then((addedCardData) => {
+      console.log(addedCardData);
 
-const editProfile = new PopupWithForm(formEditSelector, (data) => {
-  const name = data.name;
-  const job = data.job;
-  userInformation.setUserInfo({
-    nameInput: name,
-    jobInput: job,
-  });
+      renCard(addedCardData);
+
+      addCardPopup.close();
+    })
+
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+// function addCardSuccess(cardData) {
+//   renderCard(cardData);
+// }
+
+// // popup with form - edit profile info
+
+const editProfile = new PopupWithForm(formEditSelector, (info) => {
+  api
+    .editUserInfo(info)
+    .then((info) => {
+      return info;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  // userInformation.setUserInfo({
+  //   nameInput: name,
+  //   jobInput: job,
+  // });
 
   editProfile.close();
 });
@@ -113,6 +205,7 @@ const editProfile = new PopupWithForm(formEditSelector, (data) => {
 const userInformation = new UserInfo({
   nameSelector: profileNameSelector,
   jobTitleSelector: profileJobSelector,
+  avatarSelector: profileAvatarSelector,
 });
 
 // // popup with image - preview
@@ -121,4 +214,59 @@ const previewImage = new PopupWithImage(previewImagePopup);
 
 // //initiate classes
 
-cardSection.rendererItems(initialCards);
+// cardSection.rendererItems(initialCards);
+
+// API class
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "45ab58aa-ed14-4dd2-85dc-1e748f07f7cd",
+    "Content-Type": "application/json",
+  },
+});
+
+// initial cards
+
+function renderInitialCards(callback) {
+  api
+    .getInitialCards()
+    .then((cards) => {
+      console.log(cards);
+
+      return callback(cards);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+renderInitialCards((cards) => {
+  cardSection.rendererItems(cards);
+});
+
+// get user info
+
+function getUserInfo(callback) {
+  api
+    .getUserInfo()
+    .then((info) => {
+      return callback(info);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+getUserInfo((info) => {
+  userInformation.setUserInfo({
+    nameInput: info.name,
+    jobInput: info.about,
+  });
+  console.log(info);
+  userInformation.setUserAvatar({
+    avatarInput: info.avatar,
+  });
+});
+
+// edit user info
