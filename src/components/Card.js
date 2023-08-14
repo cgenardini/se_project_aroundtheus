@@ -1,8 +1,12 @@
 export default class Card {
-  constructor({ data, handleImagePreview, handleDeleteIcon }, cardSelector) {
+  constructor(
+    { data, handleImagePreview, handleDeleteIcon, handleLike, handleDislike },
+    cardSelector
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
+    this._isLiked = data.isLiked;
     this._handleImagePreview = handleImagePreview;
     this._handleDeleteIcon = handleDeleteIcon;
     this._cardSelector = cardSelector;
@@ -10,6 +14,20 @@ export default class Card {
 
   _handleLikeButton() {
     this._elementLikeButton.classList.toggle("card_button-like_active");
+  }
+
+  isLiked() {
+    if (this._elementLikeButton.classList.contains("card_button-like_active")) {
+      return true;
+    }
+  }
+
+  isDisliked() {
+    if (
+      !this._elementLikeButton.classList.contains("card_button-like_active")
+    ) {
+      return false;
+    }
   }
 
   handleDeleteButton() {
@@ -40,6 +58,7 @@ export default class Card {
       ".card__button-delete"
     );
     this._elementLikeButton = this._element.querySelector(".card__button-like");
+    this._elementLikeButton.isLiked = this.isLiked();
 
     this._elementTitle.textContent = this._name;
     this._elementImage.src = this._link;

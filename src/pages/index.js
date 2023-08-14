@@ -140,9 +140,17 @@ const renderCard = (data) => {
         );
         deleteCardPopup.open();
       },
+      handleLike: (cardElement) => {
+        function likeButton() {
+          if (cardElement.isLiked === true) {
+            api.likeCard(cardElement.id);
+          }
+        }
+      },
     },
     cardSelector
   );
+
   cardSection.addItem(cardElement.getView());
 };
 
@@ -152,10 +160,12 @@ const addCardPopup = new PopupWithForm(formAddSelector, (data) => {
   const name = data.name;
   const link = data.link;
   const id = data._id;
+  const isLiked = data.isLiked;
   const cardData = {
     name,
     link,
     id,
+    isLiked,
   };
 
   newCard(cardData);
@@ -269,4 +279,4 @@ getUserInfo((info) => {
   });
 });
 
-// edit user info
+// card is liked
