@@ -24,7 +24,14 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img class="profile__image" alt="image" />
+          <div class="profile__image-container">
+            <img class="profile__image" alt="image" />
+            <img
+              class="profile__image-icon"
+              src="<%=require('./images/Vector.svg')%>"
+              alt="edit icon"
+            />
+          </div>
           <div class="profile__title">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button
@@ -38,6 +45,42 @@
             type="button"
             class="profile__button profile__button_type_add"
           ></button>
+        </section>
+
+        <section class="modal" id="modal-avatar">
+          <form class="modal__container" id="container-avatar">
+            <h3 class="modal__header">Change profile picture</h3>
+            <fieldset
+              class="modal__fieldset modal__fieldset_type_avatar"
+              id="add-form"
+            >
+              <label class="modal__input-wrap">
+                <input
+                  type="url"
+                  class="modal__input modal__input_type_avatar"
+                  id="avatar"
+                  name="avatar"
+                  placeholder="Image link"
+                  required
+                />
+                <span class="modal__error" id="avatar-error"></span>
+              </label>
+              <button
+                type="submit"
+                id="add_submit-button"
+                class="modal__button modal__button_disabled"
+                disabled
+              >
+                Save
+              </button>
+
+              <button
+                type="button"
+                class="modal__close"
+                id="close-add"
+              ></button>
+            </fieldset>
+          </form>
         </section>
 
         <section class="modal" id="modal-edit">

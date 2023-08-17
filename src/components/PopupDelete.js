@@ -7,22 +7,14 @@ export default class PopupDelete extends Popup {
     this._handleDeleteButton = handleDeleteButton;
   }
 
-  //   open(cardElement) {
-  //     super.open();
-  //     this.setEventListeners(cardElement);
-  //   }
-
-  //   handleDeleteButton (cardElement){
-
-  //   }
-
-  open() {
-    super.open();
-  }
-
   setEventListeners() {
     this._popupButton.addEventListener("click", this._handleDeleteSubmit);
     super.setEventListeners();
+  }
+
+  removeEventListeners() {
+    this._popupButton.removeEventListener("click", this._handleDeleteSubmit);
+    super.removeEventListeners();
   }
 
   _handleDeleteSubmit = () => {

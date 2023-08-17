@@ -2,64 +2,6 @@ export const imageModal = document.querySelector("#modal-image");
 export const modalImage = document.querySelector(".modal__image");
 export const modalImageTitle = document.querySelector(".modal__image-title");
 
-// export const initialCards = [
-//   {
-//     title: "Rome",
-//     link: "https://images.unsplash.com/photo-1581274050302-581149d3b4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2487&q=80",
-//   },
-//   {
-//     title: "Bali",
-//     link: "https://images.unsplash.com/photo-1559628233-eb1b1a45564b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-//   },
-//   {
-//     title: "Croatia",
-//     link: "https://images.unsplash.com/photo-1454452176678-c0437432bba6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-//   },
-//   {
-//     title: "Cambodia",
-//     link: "https://images.unsplash.com/photo-1609949165382-2e442783c8d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
-//   },
-//   {
-//     title: "Oaxaca",
-//     link: "https://images.unsplash.com/photo-1465256410760-10640339c72c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-//   },
-//   {
-//     title: "Greece",
-//     link: "https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-//   },
-// ];
-
-// export const initialCards = [
-//   {
-//     createdAt: "2023-07-05T08:10:57.741Z",
-//     isLiked: false,
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-//     name: "Yosemite Valley",
-//     owner: {
-//       about: "Sailor, researcher",
-//       avatar:
-//         "https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg",
-//       name: "Jacques Cousteau",
-//       _id: "e20537ed11237f86bbb20ccb",
-//     },
-//     _id: "5d1f0611d321eb4bdcd707dd",
-//   },
-//   {
-//     createdAt: "2023-07-05T08:11:58.324Z",
-//     isLiked: false,
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-//     name: "Lake Louise",
-//     owner: {
-//       about: "Sailor, researcher",
-//       avatar:
-//         "https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg",
-//       name: "Jacques Cousteau",
-//       _id: "e20537ed11237f86bbb20ccb",
-//     },
-//     _id: "5d1f064ed321eb4bdcd707de",
-//   },
-// ];
-
 export const cardsContainer = document.querySelector(".gallery__cards");
 export const cardContainerSelector = ".gallery__cards";
 
@@ -72,18 +14,17 @@ export const modalAdd = document.querySelector("#modal-add");
 
 export const closeButtons = document.querySelectorAll(".modal__close");
 
-export const profileFormElement = document.querySelector(".modal__container");
 export const formAddElement = document.querySelector("#container-add");
 export const formAddSelector = "#modal-add";
 export const formEditSelector = "#modal-edit";
+export const formAvatarSelector = "#modal-avatar";
 export const formEditElement = document.querySelector("#container-edit");
+export const formAvatarElement = document.querySelector("#container-avatar");
 
-export const nameInput = profileFormElement.querySelector(
+export const nameInput = formEditElement.querySelector(
   ".modal__input_type_name"
 );
-export const jobInput = profileFormElement.querySelector(
-  ".modal__input_type_job"
-);
+export const jobInput = formEditElement.querySelector(".modal__input_type_job");
 
 export const profileName = document.querySelector(".profile__name");
 export const profileJob = document.querySelector(".profile__job-title");
@@ -98,3 +39,11 @@ export const previewImagePopup = "#modal-image";
 export const deletePopupSelector = "#modal-delete";
 
 export const deleteButtonSelector = "#delete-button";
+
+export const profileImageSelector = ".profile__image";
+
+export const profileImageElement = document.querySelector(profileImageSelector);
+
+export const avatarContainerElement = document.querySelector(
+  ".profile__image-container"
+);

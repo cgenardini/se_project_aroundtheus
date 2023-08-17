@@ -45,10 +45,19 @@ export default class Api {
     });
   }
 
-  editUserAvatar() {
+  editUserAvatar(info) {
+    console.log(info);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: "PATCH",
+      body: JSON.stringify({
+        avatar: info.avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -68,24 +77,7 @@ export default class Api {
     });
   }
 
-  //   getCardId(card) {
-  //     return fetch(`${this.baseUrl}/cards`, {
-  //       headers: this.headers,
-  //       method: "GET",
-  //       body: JSON.stringify({
-  //         name: card.name,
-  //         link: card.link,
-  //       }),
-  //     }).then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //       return Promise.reject(`Error: ${res.status}`);
-  //     });
-  //   }
-
   deleteCard(card) {
-    console.log(card.id);
     return fetch(`${this._baseUrl}/cards/${card.id}`, {
       headers: this._headers,
       method: "DELETE",
@@ -101,6 +93,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${card.id}/likes`, {
       headers: this._headers,
       method: "PUT",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -108,6 +105,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${card.id}/likes`, {
       headers: this._headers,
       method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 }
