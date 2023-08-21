@@ -1,13 +1,7 @@
-import { closeButtons } from "../utils/constants.js";
-
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
-    this._submitButtonElement =
-      this._popupElement.querySelector(".modal__button");
-    this._saveButtonElement = this._popupElement.querySelector(
-      ".modal__loading-button"
-    );
+    this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
   open() {
@@ -26,16 +20,6 @@ export default class Popup {
     }
   };
 
-  uploadingInfo(isloading) {
-    if (isloading) {
-      this._submitButtonElement.classList.add("modal_button_saving");
-      this._submitButtonElement.textContent = "Saving...";
-    } else {
-      this._submitButtonElement.classList.remove("modal_button_saving");
-      this._submitButtonElement.textContent = "Save";
-    }
-  }
-
   _handleClickOutside = (evt) => {
     if (evt.target.classList.contains("modal_open")) {
       this.close();
@@ -43,9 +27,7 @@ export default class Popup {
   };
 
   _handleCloseButtons = () => {
-    closeButtons.forEach((button) => {
-      button.addEventListener("click", () => this.close());
-    });
+    this._closeButton.addEventListener("click", () => this.close());
   };
 
   setEventListeners() {

@@ -19,6 +19,5 @@ export default class PopupDelete extends Popup {
 
   _handleDeleteSubmit = () => {
     this._handleDeleteButton();
-    this.close();
   };
 }

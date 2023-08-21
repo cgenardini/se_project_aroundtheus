@@ -13,6 +13,7 @@ export const modalEdit = document.querySelector("#modal-edit");
 export const modalAdd = document.querySelector("#modal-add");
 
 export const closeButtons = document.querySelectorAll(".modal__close");
+export const closeButtonSelector = ".modal__close";
 
 export const formAddElement = document.querySelector("#container-add");
 export const formAddSelector = "#modal-add";
@@ -47,3 +48,11 @@ export const profileImageElement = document.querySelector(profileImageSelector);
 export const avatarContainerElement = document.querySelector(
   ".profile__image-container"
 );
+
+export const valOptions = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
