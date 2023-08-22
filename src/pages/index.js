@@ -15,8 +15,6 @@ import {
   formAddElement,
   formEditElement,
   formAvatarElement,
-  nameInput,
-  jobInput,
   cardSelector,
   previewImagePopup,
   cardContainerSelector,
