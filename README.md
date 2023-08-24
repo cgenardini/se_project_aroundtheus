@@ -28,10 +28,12 @@ This project is made so all the elements are displayed correctly on popular scre
 - Image modal is opened with user clicks on card images. Image title is displayed below image modal
 - custom form validation message display withing browser default message
 - Buttons active of when all for inputs are valid.
-- CSS Blocks
 - OOP
 - Class Modules
+
+**API**
 - API: Render Cards, Add Card, Delete Card, Get/Patch User Info, Like/unlike Cards
+- API Class created
 
 **Webpack** 
 - project compiled using Webpack
