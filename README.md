@@ -6,6 +6,7 @@
 - Images
 - Adaptable Webdesign
 - JavaScript
+- OOP
 - Rest API
 - Webpack
 
