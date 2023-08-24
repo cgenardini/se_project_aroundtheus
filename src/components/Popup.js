@@ -1,8 +1,7 @@
-import { closeButtons } from "../utils/constants.js";
-
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
+    this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
   open() {
@@ -28,21 +27,19 @@ export default class Popup {
   };
 
   _handleCloseButtons = () => {
-    closeButtons.forEach((button) => {
-      button.addEventListener("click", () => this.close());
-    });
+    this.close();
   };
 
   setEventListeners() {
     document.addEventListener("mousedown", this._handleClickOutside);
     document.addEventListener("keydown", this._handleEscClose);
 
-    document.addEventListener("click", this._handleCloseButtons);
+    this._closeButton.addEventListener("click", this._handleCloseButtons);
   }
 
   removeEventListeners() {
     document.removeEventListener("mousedown", this._handleClickOutside);
     document.removeEventListener("keydown", this._handleEscClose);
-    document.removeEventListener("click", this._handleCloseButtons);
+    this._closeButton.removeEventListener("click", this._handleCloseButtons);
   }
 }

@@ -6,13 +6,52 @@
   max-width: 100%;
 }
 
+.profile__image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile__image-container:hover {
+  opacity: 0.6;
+}
+
+.profile__image-container:hover .profile__image-icon {
+  visibility: visible;
+}
+
 .profile__image {
   border-radius: 50%;
   height: 120px;
-  max-width: 120px;
-
+  width: 120px;
   object-fit: cover;
+  display: block;
 }
+
+.profile__image-icon {
+  visibility: hidden;
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  height: 26px;
+  width: 26px;
+}
+
+/* .profile__image-icon:hover {
+  visibility: visible;
+  display: block;
+  border-style: solid;
+  border-color: red;
+} */
+
+/* .profile__image:hover {
+  position: relative;
+  opacity: 20%;
+  background-image: url(../images/Vector.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+} */
 
 .profile__title {
   margin-left: 30px;

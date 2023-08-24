@@ -10,33 +10,37 @@ import Api from "../components/Api.js";
 import PopupDelete from "../components/PopupDelete.js";
 
 import {
-  initialCards,
   buttonEdit,
   buttonAdd,
   formAddElement,
   formEditElement,
-  nameInput,
-  jobInput,
+  formAvatarElement,
   cardSelector,
   previewImagePopup,
   cardContainerSelector,
   formAddSelector,
   formEditSelector,
+  formAvatarSelector,
   profileNameSelector,
   profileJobSelector,
-  addSubmitButton,
   profileAvatarSelector,
   deletePopupSelector,
   deleteButtonSelector,
+  avatarContainerElement,
+  valOptions,
 } from "../utils/constants.js";
+import { _ } from "core-js";
+
+let currentCardElement;
 
 // profile edit and add buttons
 
 buttonEdit.addEventListener("click", () => {
   const userInfo = userInformation.getUserInfo();
-  nameInput.value = userInfo.userName;
-  jobInput.value = userInfo.userJob;
-  editProfile.open();
+
+  editProfilePopup.setInputValues(userInfo);
+
+  editProfilePopup.open();
 });
 
 buttonAdd.addEventListener("click", function (evt) {
@@ -45,21 +49,20 @@ buttonAdd.addEventListener("click", function (evt) {
   addCardPopup.open();
 });
 
+avatarContainerElement.addEventListener("click", () => {
+  avatorFormValidator.disableButton();
+  editAvatarPopUp.open();
+});
+
 // form validator
 
-const options = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-const editFormValidator = new FormValidator(options, formEditElement);
-const addFormValidator = new FormValidator(options, formAddElement);
+const editFormValidator = new FormValidator(valOptions, formEditElement);
+const addFormValidator = new FormValidator(valOptions, formAddElement);
+const avatorFormValidator = new FormValidator(valOptions, formAvatarElement);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatorFormValidator.enableValidation();
 
 // Section
 
@@ -72,43 +75,6 @@ const cardSection = new Section(
   cardContainerSelector
 );
 
-// testing render card function
-
-const renCard = (data) => {
-  const cardElement = new Card(
-    {
-      data,
-      handleImagePreview: (imageData) => {
-        previewImage.open(imageData);
-      },
-      handleDeleteIcon: (cardElement) => {
-        const deleteCardPopup = new PopupDelete(
-          deletePopupSelector,
-          deleteButtonSelector,
-
-          () => {
-            // console.log(cardElement.id);
-
-            api
-              .deleteCard(cardElement)
-              .then(() => {
-                if (cardElement) {
-                  cardElement.remove();
-                }
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-          }
-        );
-        deleteCardPopup.open();
-      },
-    },
-    cardSelector
-  );
-
-  cardSection.addItem(cardElement.getView());
-};
 // render card function
 
 const renderCard = (data) => {
@@ -119,85 +85,84 @@ const renderCard = (data) => {
         previewImage.open(imageData);
       },
       handleDeleteIcon: (cardElement) => {
-        const deleteCardPopup = new PopupDelete(
-          deletePopupSelector,
-          deleteButtonSelector,
+        currentCardElement = cardElement;
 
-          () => {
-            // console.log(cardElement.id);
-
-            api
-              .deleteCard(cardElement)
-              .then(() => {
-                if (cardElement) {
-                  cardElement.remove();
-                }
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-          }
-        );
         deleteCardPopup.open();
+      },
+      handleLike: (card, isLiked) => {
+        if (isLiked === true) {
+          api
+            .dislikeCard(card)
+            .then(() => {
+              cardElement.toggleLikeElement();
+            })
+            .catch(console.error);
+        } else {
+          api
+            .likeCard(card)
+            .then(() => {
+              cardElement.toggleLikeElement();
+            })
+            .catch(console.error);
+        }
       },
     },
     cardSelector
   );
+
   cardSection.addItem(cardElement.getView());
 };
 
-// //popup with form - add card
+// popup with form - edit avatar
 
-const addCardPopup = new PopupWithForm(formAddSelector, (data) => {
-  const name = data.name;
-  const link = data.link;
-  const id = data._id;
-  const cardData = {
-    name,
-    link,
-    id,
-  };
-
-  newCard(cardData);
+const editAvatarPopUp = new PopupWithForm(formAvatarSelector, (info) => {
+  editAvatarPopUp.uploadingInfo(true);
+  api
+    .editUserAvatar(info)
+    .then((info) => {
+      setAvatar(info);
+      editAvatarPopUp.close();
+    })
+    .catch(console.error)
+    .finally(() => {
+      editAvatarPopUp.uploadingInfo(false);
+    });
 });
 
-function newCard(cardData) {
+// //popup with form - add card
+
+const addCardPopup = new PopupWithForm(formAddSelector, addNewCard);
+
+function addNewCard(cardData) {
+  addCardPopup.uploadingInfo(true);
   api
     .addNewCard(cardData)
     .then((addedCardData) => {
-      console.log(addedCardData);
-
-      renCard(addedCardData);
-
+      renderCard(addedCardData);
       addCardPopup.close();
     })
 
-    .catch((err) => {
-      console.error(err);
+    .catch(console.error)
+    .finally(() => {
+      addCardPopup.uploadingInfo(false);
     });
 }
 
-// function addCardSuccess(cardData) {
-//   renderCard(cardData);
-// }
-
 // // popup with form - edit profile info
 
-const editProfile = new PopupWithForm(formEditSelector, (info) => {
+const editProfilePopup = new PopupWithForm(formEditSelector, (info) => {
+  editProfilePopup.uploadingInfo(true);
   api
     .editUserInfo(info)
     .then((info) => {
+      setProfileInfo(info);
+      editProfilePopup.close();
       return info;
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(console.error)
+    .finally(() => {
+      editProfilePopup.uploadingInfo(false);
     });
-  // userInformation.setUserInfo({
-  //   nameInput: name,
-  //   jobInput: job,
-  // });
-
-  editProfile.close();
 });
 
 // userInfo
@@ -212,10 +177,6 @@ const userInformation = new UserInfo({
 
 const previewImage = new PopupWithImage(previewImagePopup);
 
-// //initiate classes
-
-// cardSection.rendererItems(initialCards);
-
 // API class
 
 const api = new Api({
@@ -228,45 +189,58 @@ const api = new Api({
 
 // initial cards
 
-function renderInitialCards(callback) {
-  api
-    .getInitialCards()
-    .then((cards) => {
-      console.log(cards);
-
-      return callback(cards);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+function renderInitialCards() {
+  return api.getInitialCards();
 }
-
-renderInitialCards((cards) => {
-  cardSection.rendererItems(cards);
-});
 
 // get user info
 
-function getUserInfo(callback) {
-  api
-    .getUserInfo()
-    .then((info) => {
-      return callback(info);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+function getUserInfo() {
+  return api.getUserInfo();
 }
 
-getUserInfo((info) => {
+function setProfileInfo(info) {
   userInformation.setUserInfo({
     nameInput: info.name,
     jobInput: info.about,
   });
-  console.log(info);
+}
+
+function setAvatar(info) {
   userInformation.setUserAvatar({
     avatarInput: info.avatar,
   });
-});
+}
 
-// edit user info
+// promise all getUserInfo and render cards
+
+Promise.all([getUserInfo(), renderInitialCards()])
+  .then(([userData, cards]) => {
+    setProfileInfo(userData);
+    setAvatar(userData);
+    cardSection.rendererItems(cards);
+  })
+  .catch(console.error);
+
+// delete card popup
+
+const deleteCardPopup = new PopupDelete(
+  deletePopupSelector,
+  deleteButtonSelector,
+
+  () => {
+    deleteCard(currentCardElement);
+  }
+);
+
+function deleteCard(cardElement) {
+  api
+    .deleteCard(cardElement)
+    .then(() => {
+      if (cardElement) {
+        cardElement.remove();
+        deleteCardPopup.close();
+      }
+    })
+    .catch(console.error);
+}

@@ -34,7 +34,7 @@
   position: relative;
   max-width: 430px;
   width: 100%;
-  max-height: 181px;
+  min-height: 181px;
   background-color: white;
   border-radius: 10px;
 }
@@ -63,7 +63,7 @@
 }
 
 .modal__header-delete {
-  margin: 34px 64px 24px 36px;
+  margin: 34px 64px 38px 36px;
   font-size: 24px;
   line-height: 1.21;
   font-weight: 900;
@@ -79,12 +79,6 @@
   border: none;
   font-size: 14px;
   line-height: 1.21;
-}
-
-.modal__fieldset_type_edit {
-}
-
-.modal__fieldset_type_delete {
 }
 
 .modal__input-wrap {
@@ -119,6 +113,7 @@
 }
 
 .modal__button {
+  display: block;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -135,7 +130,11 @@
   margin-top: 0px;
 }
 
-.modal__button_type_save:hover {
+.modal__button:hover {
+  opacity: 80%;
+}
+
+.modal_button_saving {
   opacity: 80%;
 }
 
@@ -181,19 +180,30 @@
     height: 322px;
   }
 
+  .modal__delete-container {
+    width: 282px;
+    height: 200px;
+  }
+
   .modal__image {
     max-width: 240px;
   }
 
   .modal__header {
-    margin: 25px 22px 75px 22px;
+    margin: 25px 22px 70px 22px;
     font-size: 18px;
+  }
+
+  .modal__header-delete {
+    margin: 34px 64px 25px 36px;
   }
 
   .modal__fieldset {
     margin: 0 22px;
+    padding: 0 0 22px;
   }
-  .modal__button_type_save {
+
+  .modal__button {
     margin-top: 45px;
     height: 46px;
     font-size: 14px;
