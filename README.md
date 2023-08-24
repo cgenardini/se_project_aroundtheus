@@ -9,7 +9,7 @@
 - Rest API
 - Webpack
 
-This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone. 
+This project is a social media profile with features to add new image cards, change user info + avatar and like images. There are popups to confirm card delete, preview image when image is clicked, edit user info, edit user avatar and add new image card. All forms must be valid for submit button to be active. Popups can be closed by submitting, pressing Esc or clicking outside of popup anywhere else on the screen. You may submit a form by clicking the submit button or pressing enter. All user data and card data is uploaded to API. This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone. 
 
 **Figma**
 
