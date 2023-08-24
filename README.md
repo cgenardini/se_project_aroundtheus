@@ -6,12 +6,12 @@
 - Images
 - Adaptable Webdesign
 - JavaScript
+- Rest API
+- Webpack
 
-This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone.
+This project is made so all the elements are displayed correctly on popular screen sizes. With an adaptable design, it can smoothly accessed on labtop, tablet or phone. 
 
 **Figma**
-
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 - First project completed using Figma design.
 
@@ -19,7 +19,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **JavaScript**
 
-- cards rendered through js
+- cards rendered through API response
 - modal button activated/deactivated using buttons
 - form submit updated user information on profile and renders value in the form input
 - modal added for card add form. Form information is submitted to render new card on feed.
@@ -28,14 +28,17 @@ This project is made so all the elements are displayed correctly on popular scre
 - Image modal is opened with user clicks on card images. Image title is displayed below image modal
 - custom form validation message display withing browser default message
 - Buttons active of when all for inputs are valid.
-- organized into modules to organize code
-- created two classes for Card and FormValidator
-- Utils placed to separate modules to use in separate files
+- CSS Blocks
+- OOP
+- Class Modules
+- API: Render Cards, Add Card, Delete Card, Get/Patch User Info, Like/unlike Cards
+
+**Webpack** 
+- project compiled using Webpack
 
 **Updates**
 
-- User needs a way to change profile picture
-- New data saved to server
+- User Login 
 
 **Live**
 
